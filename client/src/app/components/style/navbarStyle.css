@@ -1,0 +1,144 @@
+.navbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-gradient-1--);
+    width: 100%;
+}
+
+.navContent {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
+}
+
+
+.navLogo h1 {
+    color: var(--main-color-1--);
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 2px var(--text-color-2--);
+}
+
+.navLogo span {
+    color: var(--main-color-4--);
+}
+
+.navMenu {
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navMenu ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    width: 100%;
+}
+
+.navMenu ul a {
+    text-decoration: none;
+    color: var(--text-color-1--);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.navMenu ul a:hover {
+    background: var(--main-color-1--);
+    color: var(--text-color-2--);
+    box-shadow: 0px 0px 2px black;
+}
+
+.navMenuLogin {
+    border-radius: 10px;
+    padding: 5px 0;
+    display: flex;
+    justify-content: right;
+}
+
+.navMenuLogin a {
+    color: var(--text-color-1--);
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 5px 25px;
+    transition: all 0.3s;
+}
+
+.navMenuLogin a:hover {
+    background-color: var(--main-color-1--);
+    color: var(--text-color-2--);
+}
+
+.navTogel {
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+    color: white;
+    width: 5rem;
+}
+
+@media screen and (max-width: 768px) {
+    .navTogel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+    }
+
+    .navbar .navMenu {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+        background: var(--main-color-5--);
+        position: absolute;
+        width: 50%;
+        height: 100vh;
+        top: -9999px;
+        right: 0;
+    }
+
+    .navbar .navMenu ul {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 40vh;
+        gap: 2rem;
+        padding-top: 1rem;
+    }
+
+    .navMenu.active {
+        top: 0px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .navbar .navMenuLogin {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: transparent;
+        position: absolute;
+        top: -800px;
+        right: 0;
+        width: 50%;
+        border-radius: 0;
+    }
+
+    .navbar .navMenuLogin a {
+        text-align: center;
+        margin: 0px auto;
+        width: 7rem;
+    }
+
+    .navMenuLogin.active{
+        top: 270px;
+    }
+}
