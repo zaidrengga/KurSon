@@ -1,5 +1,5 @@
 import './style/homeStyle.css'
-import { ImageList } from '../assets/imageList'
+import { ImageList } from '../assets/ImageList'
 
 function HomePage() {
 

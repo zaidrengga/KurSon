@@ -1,6 +1,6 @@
 import EBook1 from "./EBook/Belajar_dasar_Algoritma_dan_Pemograman.pdf";
 import EBook2 from "./EBook/Belajar_dasar_dasar_HTML.pdf";
-import EBook3 from "./EBook/Bicara_Itu_Ada_Seninya.pdf";
+import EBook3 from "./EBook/Bicara_itu_ada_seninya.pdf";
 import EBook4 from "./EBook/dasarpemrogramanpython.pdf";
 import EBook5 from "./EBook/html_css_JavaScript.pdf";
 import EBook6 from "./EBook/Langkah+Awal+Menguasai+Bahasa+Pemrograman+Python.pdf";
