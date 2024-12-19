@@ -1,11 +1,10 @@
-const express = require("express");
-const cors = require("cors")
-const {insert,get} = require('./migration/query')
-require('dotenv/config')
+import express from "express";
+import cors from "cors"
+import { insert , get } from "./utils/query.js";
+import("dotenv/config")
 
 
-PORT = process.env.APP_PORT || 3001
-
+const PORT = process.env.APP_PORT || 3001
 const app = express();
 app.use(cors())
 app.use(express.json());

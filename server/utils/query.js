@@ -1,18 +1,19 @@
-require("dotenv/config")
-const mysql = require("mysql2")
+import mysql from "mysql2"
+import("dotenv/config")
 
-function connection() {
+export function connection() {
     const db = mysql.createConnection({
         host: process.env.DB_HOST,
         user: process.env.DB_USERNAME,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DATABASE,
     });
-
     return db;
 }
+
+
 const db = connection();
-function insert(table,data){ 
+export function insert(table,data){ 
 
     // menerima nama<str> table dan data <object>
     // Jika selesai akan mengembalikan bool
@@ -26,7 +27,7 @@ function insert(table,data){
 }
 
 
-async function get(data,table,where = false){
+export async function get(data,table,where = false){
     
     // data<str> "*" or "(data1,data2,data3)" dan where<object> itu opsional
     
@@ -39,5 +40,3 @@ async function get(data,table,where = false){
     const [rows] = await db.promise().query(sql)
     return rows
 }
-
-module.exports = {connection,insert,get}

@@ -1,4 +1,5 @@
-const {connection} = require('./query')
+import { connection } from "../utils/query.js"
+
 const db = connection()
 
 const schema = `CREATE TABLE user(
