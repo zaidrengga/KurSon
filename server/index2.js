@@ -5,6 +5,7 @@ const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(3001, () => {
     console.log("Server is running on port 3001");
@@ -13,9 +14,9 @@ app.listen(3001, () => {
 
 //connecting to database
 const db = mysql.createConnection({
-    host: "localhost",
+    host: "localhost:3306",
     user: "root",
-    password: "",
+    password: "123",
     database: "datanew",
 });
 
