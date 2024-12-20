@@ -1,7 +1,10 @@
-import express from "express";
+import express, { request } from "express";
 import cors from "cors"
-import { insert , get } from "./utils/query.js";
-import("dotenv/config")
+import dotenv from "dotenv"
+import { json_format_send } from "./utils/excepts.js";
+import { get_user, login, register } from "./src/auth.js";
+import {hash} from 'bcrypt';
+dotenv.config()
 
 
 const PORT = process.env.APP_PORT || 3001
@@ -12,23 +15,32 @@ app.use(express.urlencoded({ extended: true }));
 
 
 
-app.post('/register',(req,res)=> {
-    const username = req.body.Username;
-    const user_email = req.body.Email;
-    const user_password = req.body.Password;
-    console.log(insert("user",{username,user_email,user_password : btoa(user_password)}))
-    res.send({message: "User registered successfully"});
+app.post('/register',async (request,res)=> {
+
+    const result = await register(request)
+    if (result == 0) {
+        res.send({message: "User registered successfully"});
+    }else{
+        res.status(401).json(json_format_send({status:401,message:result}))
+    }
  })
 
- app.post('/login',(req,res)=>{
-    const user_email = req.body.LoginEmail;
-    const user_password = req.body.LoginPassword;
-    
-    get("*","user",{user_email,user_password : btoa(user_password)})
-    .then((e) => {
-        if (e.length > 0) {res.send(e);} else { res.send({message: "User not found"});}
-    }).catch(e => {console.error(e); res.send({error: err})})
+ app.post('/login',async (request,res)=>{
+    const result = await login(request);
+    if (result == "fail"){
+        res.status(401).json(json_format_send({status:401,message:"kegagalan login"}));
+    } else {
+        res.json(json_format_send({message: "login succsess",data:result}));
+    }
  })
 
+ app.put("/login",async (request,res)=> {
+    const result = await get_user(request);
+    if (result == "failed") {
+        res.status(401).json(json_format_send({status:401,message:result}));
+    } else {
+        res.json(json_format_send({data : result}))
+    }
+ })
 
-app.listen(PORT,()=> {console.log(`listen on ${PORT}`)})
+app.listen(PORT,()=> {console.log(`listen on http://127.0.0.1:${PORT}`)})
