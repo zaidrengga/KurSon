@@ -1,5 +1,4 @@
 import { connection } from "../utils/query.js"
-import default from '../../client/eslint.config';
 
 const db = connection()
 
