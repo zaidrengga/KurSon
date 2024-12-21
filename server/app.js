@@ -19,7 +19,7 @@ app.post('/register',async (request,res)=> {
 
     const result = await register(request)
     if (result == 0) {
-        res.send({message: "User registered successfully"});
+        res.json(json_format_send({message:"register complete"}))
     }else{
         res.status(401).json(json_format_send({status:401,message:result}))
     }
@@ -41,6 +41,9 @@ app.post('/register',async (request,res)=> {
     } else {
         res.json(json_format_send({data : result}))
     }
+ })
+ app.post("/logout",async (request,res)=> {
+    
  })
 
 app.listen(PORT,()=> {console.log(`listen on http://127.0.0.1:${PORT}`)})

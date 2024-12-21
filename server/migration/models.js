@@ -10,6 +10,7 @@ const schema = `CREATE TABLE user(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     user_session TEXT DEFAULT "" 
+    
 )`
 
 //////////////////////////////////////
