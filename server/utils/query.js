@@ -45,9 +45,21 @@ export async function token_insert(username,user_email,token) {
     try{
         const sql = `UPDATE user SET user_session = CONCAT(user_session , ${"\n'" + token + "'"}) ${generate_where({username,user_email})}`
         if (process.env.APP_DEBUG) console.log("query : ",sql)
-        await db.promise().query(sql)
+        await db.promise().query(sql); return true
     }catch (err){
         console.log(err)
         return false
+    } 
+}
+
+export async function token_remove(username,user_email,new_token) {
+    try{
+        const sql = `UPDATE user SET user_session = ${"'" + new_token + "'"} ${generate_where({username,user_email})}`
+        if (process.env.APP_DEBUG) console.log(sql)
+        await db.promise().query(sql); return true
+    } catch(err) {
+        console.error(err)
+        return false
     }
+    
 }

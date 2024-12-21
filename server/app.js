@@ -2,7 +2,7 @@ import express, { request } from "express";
 import cors from "cors"
 import dotenv from "dotenv"
 import { json_format_send } from "./utils/excepts.js";
-import { get_user, login, register } from "./src/auth.js";
+import { get_user, login, logout, register } from "./src/auth.js";
 import {hash} from 'bcrypt';
 dotenv.config()
 
@@ -43,7 +43,10 @@ app.post('/register',async (request,res)=> {
     }
  })
  app.post("/logout",async (request,res)=> {
-    
+    const result = await logout(request)
+    if (result) {
+        res.json(json_format_send({message : "logout success"}))
+    } else {res.status(401).json(json_format_send({status : 401 , message : "unable to logout"}))}
  })
 
 app.listen(PORT,()=> {console.log(`listen on http://127.0.0.1:${PORT}`)})

@@ -1,4 +1,5 @@
 import { connection } from "../utils/query.js"
+import default from '../../client/eslint.config';
 
 const db = connection()
 
@@ -9,7 +10,11 @@ const schema = `CREATE TABLE user(
     user_password varchar(250),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    user_session TEXT DEFAULT "" 
+    user_session TEXT DEFAULT "" ,
+
+    userdata_image varchar(250) DEFAULT "",
+    userdata_kelas varchar(250)
+    
     
 )`
 

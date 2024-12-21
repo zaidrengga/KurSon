@@ -1,4 +1,5 @@
-import { get, insert, token_insert } from "../utils/query.js";
+import { text } from "express";
+import { get, insert, token_insert, token_remove } from "../utils/query.js";
 import { hash , compare} from "bcrypt";
 
 export async function register(request) {
@@ -49,6 +50,20 @@ export async function get_user(request) {
         }
     }catch (err) {
         console.error(err)
+        return "failed"
+    }
+}
+export async function  logout(request) {
+    try {
+        let token = request.header("Authorization");
+        token = token.split(" ")[1]
+        let user = await get_user(request);
+        if (user != "failed") {
+            let new_session = user.user_session.replace(token," ");
+            console.log(new_session)
+            return result = await token_remove(user.username,user.user_email,new_session)
+        }
+    } catch (err) { 
         return "failed"
     }
 }
